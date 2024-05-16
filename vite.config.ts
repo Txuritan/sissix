@@ -126,8 +126,8 @@ export default defineConfig({
                         "purpose": "maskable"
                     },
                     {
-                        "src": "maskable-icon-144x144.png",
-                        "sizes": "144x144",
+                        "src": "maskable-icon-128x128.png",
+                        "sizes": "128x128",
                         "type": "image/png",
                         "purpose": "maskable"
                     },
