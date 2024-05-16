@@ -4,7 +4,7 @@ import { defineConfig } from 'vite'
 import { svelte } from '@sveltejs/vite-plugin-svelte'
 import { viteSingleFile } from "vite-plugin-singlefile";
 
-import { visualizer } from "rollup-plugin-visualizer";
+// import { visualizer } from "rollup-plugin-visualizer";
 
 const production = !process.env.ROLLUP_WATCH;
 
@@ -13,10 +13,10 @@ export default defineConfig({
   plugins: [
     svelte(),
     viteSingleFile(),
-    visualizer({
-      emitFile: true,
-      filename: "stats.html",
-    }),
+    // visualizer({
+    //   emitFile: true,
+    //   filename: "stats.html",
+    // }),
   ],
   resolve: {
     alias: {

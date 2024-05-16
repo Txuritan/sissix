@@ -11,12 +11,18 @@
     import Wishlist from "./routes/Wishlist.svelte";
 
     export let url = "";
+
+    // TODO: add a better say to set this
+    let basepath = "/"
+    if (import.meta.env.PROD) {
+        basepath = "/sissix/"
+    }
 </script>
 
 <div class="flex h-screen">
     <ModeWatcher />
 
-    <Router {url}>
+    <Router {url} {basepath}>
         <Nav />
 
         <main class="flex flex-col flex-grow px-2 max-h-screen">
