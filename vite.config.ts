@@ -11,6 +11,7 @@ const production = !process.env.ROLLUP_WATCH;
 
 // https://vitejs.dev/config/
 export default defineConfig({
+    base: production ? "/sissix/" : "/",
     plugins: [
         svelte(),
         // viteSingleFile(),
@@ -62,12 +63,12 @@ export default defineConfig({
                 display: "standalone",
                 icons: [
                     {
-                        "src": "/android-chrome-36x36.png",
+                        "src": "android-chrome-36x36.png",
                         "sizes": "36x36",
                         "type": "image/png"
                     },
                     {
-                        "src": "/android-chrome-48x48.png",
+                        "src": "android-chrome-48x48.png",
                         "sizes": "48x48",
                         "type": "image/png"
                     },
