@@ -3,19 +3,22 @@
 
     import { Badge } from "$lib/components/ui/badge";
 
-    import type { FilledBook } from "$lib/models";
+    import { type FilledBook } from "$lib/models";
+    import { editEntry, editEntryOpen, viewEntry, viewEntryOpen } from "$lib/state";
 
     export let book: FilledBook;
 
     const onTap = () => {
-        console.log("tapped book `" + book.id + "`");
+        $viewEntry = book;
+        $viewEntryOpen = true;
     };
     const onPress = () => {
-        console.log("pressed book `" + book.id + "`");
+        $editEntry = book;
+        $editEntryOpen = true;
     };
 </script>
 
-<div use:tap use:press class="flex flex-row rounded-md border border-input hover:bg-accent hover:text-accent-foreground p-2" on:tap={onTap} on:press={onPress}>
+<div use:tap use:press on:tap={onTap} on:press={onPress} class="flex flex-row rounded-md border border-input hover:bg-accent hover:text-accent-foreground p-2">
     <div class="h-24 min-h-24 max-h-24 w-[3.75rem] min-w-[3.75rem] max-w-[3.75rem] aspect-[10/16] overflow-hidden rounded">
         <img class="min-h-24 min-w-[3.75rem] object-cover transition-all" alt={"The cover of " + book.title} src={book.cover}>
     </div>

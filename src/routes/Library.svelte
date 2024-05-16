@@ -7,7 +7,9 @@
     import { Button } from "$lib/components/ui/button";
     import { Input } from "$lib/components/ui/input";
 
+    import BookEdit from "$lib/components/book/BookEdit.svelte";
     import BookEntry from "$lib/components/book/BookEntry.svelte";
+    import BookView from "$lib/components/book/BookView.svelte";
     import MediaQueryDesktop from "$lib/components/MediaQueryDesktop.svelte";
     import MediaQueryMobile from "$lib/components/MediaQueryMobile.svelte";
 
@@ -17,6 +19,9 @@
 
     $: books = liveQuery(() => DB.getAllBooks());
 </script>
+
+<BookEdit />
+<BookView />
 
 <div class="flex flex-row space-x-2 py-2">
     <MediaQueryMobile>

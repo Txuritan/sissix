@@ -81,3 +81,30 @@ export interface FilledBook extends Book {
 
     status: FilledStatus[];
 }
+
+export const EMPTY_FILLED_BOOK: FilledBook = {
+    cover: "",
+    title: "",
+    subtitle: "",
+    type: BookType.Paperback,
+    published: new Date(),
+    pages: 0,
+    description: "",
+    bbid: "",
+    isbn10: "",
+    isbn13: "",
+    olid: "",
+    author: [],
+    publisher: [],
+    series: [],
+    category: [],
+    owned: false,
+    purchased: new Date(),
+    rating: 0,
+    tag: [],
+    review: [],
+    note: [],
+    quote: [],
+    loan: [],
+    status: [],
+};
