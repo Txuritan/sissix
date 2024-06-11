@@ -13,6 +13,7 @@
     import Import from "$lib/components/add/Import.svelte";
     import Nav from "$lib/components/nav/Nav.svelte";
     import Settings from "$lib/components/settings/Settings.svelte";
+    import ReloadPrompt from "$lib/components/ReloadPrompt.svelte";
 
     import * as Camera from "$lib/camera";
     import DB from "$lib/database";
@@ -43,6 +44,8 @@
 <div class="flex h-screen font-sans">
     <ModeWatcher />
     <Toaster />
+
+    <ReloadPrompt />
 
     <Add />
     <BookEdit />

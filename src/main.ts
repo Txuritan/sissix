@@ -1,4 +1,3 @@
-import './app.css'
 import App from './App.svelte'
 
 if (import.meta.env.DEV) {
