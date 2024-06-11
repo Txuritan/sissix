@@ -154,19 +154,6 @@ const PWA_SETTINGS: Partial<VitePWAOptions> = {
 // https://vitejs.dev/config/
 export default defineConfig(({ command }) => {
     return {
-        build: {
-            rollupOptions: {
-                output: {
-                    manualChunks: {
-                        dexie: ["dexie", "dexie-export-import"],
-                        zxing: ["@zxing/library"],
-                        ...(command == "serve" ? {
-                            eruda: ["eruda"],
-                        } : {}),
-                    },
-                },
-            },
-        },
         base: command == "build" ? "/sissix/" : "/",
         plugins: [
             ...(command == "serve" ? [basicSsl()] : []),
