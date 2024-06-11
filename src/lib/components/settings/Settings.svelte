@@ -1,15 +1,13 @@
 <script lang="ts">
-    import MediaQueryDesktop from "$lib/components/MediaQueryDesktop.svelte";
-    import MediaQueryMobile from "$lib/components/MediaQueryMobile.svelte";
+    import * as Dialog from "$lib/components/ui/dialog";
 
-    import SettingsDesktop from "$lib/components/settings/SettingsDesktop.svelte";
-    import SettingsMobile from "$lib/components/settings/SettingsMobile.svelte";
+    import SettingsContent from "$lib/components/settings/SettingsContent.svelte";
+
+    import { settingsOpen } from "$lib/state";
 </script>
 
-<MediaQueryDesktop>
-    <SettingsDesktop />
-</MediaQueryDesktop>
-
-<MediaQueryMobile>
-    <SettingsMobile />
-</MediaQueryMobile>
+<Dialog.Root open={$settingsOpen} onOpenChange={(state) => { $settingsOpen = state; }}>
+    <Dialog.Content class="py-0 max-h-[90vh] min-h-[70vh] border-x-0 md:border-x">
+        <SettingsContent />
+    </Dialog.Content>
+</Dialog.Root>

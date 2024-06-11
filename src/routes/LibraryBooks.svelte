@@ -7,21 +7,16 @@
     import { Button } from "$lib/components/ui/button";
     import { Input } from "$lib/components/ui/input";
 
-    import BookEdit from "$lib/components/book/BookEdit.svelte";
     import BookEntry from "$lib/components/book/BookEntry.svelte";
-    import BookView from "$lib/components/book/BookView.svelte";
     import MediaQueryDesktop from "$lib/components/MediaQueryDesktop.svelte";
     import MediaQueryMobile from "$lib/components/MediaQueryMobile.svelte";
 
     import DB from "$lib/database";
-    import { navOpen } from "$lib/state";
+    import { addOpen, navOpen } from "$lib/state";
     import ScrollArea from '$lib/components/ui/scroll-area/scroll-area.svelte';
 
     $: books = liveQuery(() => DB.getAllBooks());
 </script>
-
-<BookEdit />
-<BookView />
 
 <div class="flex flex-row space-x-2 py-2">
     <MediaQueryMobile>
@@ -33,7 +28,7 @@
 
     <h2 class="font-bold text-lg leading-8 flex-grow">Library</h2>
 
-    <Button variant="outline" size="icon">
+    <Button variant="outline" size="icon" on:click={() => { $addOpen = true; }}>
         <Icon src={Plus} theme="filled" class="h-[1.2rem] w-[1.2rem]" size="16" />
         <span class="sr-only">Add book</span>
     </Button>

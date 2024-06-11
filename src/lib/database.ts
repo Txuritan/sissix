@@ -1,7 +1,9 @@
+// TODO: get rid of dexie
 import Dexie, { type Table } from "dexie";
 import "dexie-export-import";
 
-import type * as m from "./models.ts";
+import type * as m from "$lib/models";
+import { wrapAsyncError } from "$lib/utils";
 
 class Database extends Dexie {
     public author!: Table<m.Entity, number>;
@@ -62,6 +64,16 @@ class Database extends Dexie {
         this.open();
     }
 
+    public async persist(): Promise<void | null> {
+        return await wrapAsyncError("unable to persist database", async () => {
+            const success = navigator.storage && navigator.storage.persist && (await navigator.storage.persist());
+
+            if (!success) {
+                throw new Error("persist returned false");
+            }
+        });
+    }
+
     async backup(): Promise<Blob> {
         return await this.export();
     }
@@ -104,6 +116,7 @@ class Database extends Dexie {
         type EntityRelation = [Table<m.Entity, number>, Table<m.EntityLink, [number, number]>, m.Entity[]];
 
         const book_id = await this.book.add({
+            id: undefined,
             cover: book.cover,
             title: book.title,
             subtitle: book.subtitle,

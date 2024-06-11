@@ -2,6 +2,7 @@ import { type ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
 import { cubicOut } from "svelte/easing";
 import type { TransitionConfig } from "svelte/transition";
+import { toast } from "svelte-sonner";
 
 export function cn(...inputs: ClassValue[]) {
 	return twMerge(clsx(inputs));
@@ -59,4 +60,49 @@ export const flyAndScale = (
 		},
 		easing: cubicOut
 	};
+};
+
+export const task = <T, E>(promise: Promise<T>): Promise<{ error: null | E, data: null | T }> => {
+	return promise
+		.then(data => ({ error: null, data }))
+		.catch(error => ({ error, data: null }))
+};
+
+export const errorToast = (message: string, ex: unknown, extra: { [key: string]: string } = {}) => {
+	if (typeof ex === "string") {
+		toast(message + ": " + ex);
+	} else if (ex instanceof Error) {
+		toast(message + ": " + " [" + ex.name + "] " + ex.message);
+	}
+
+	if (Object.keys(extra).length != 0) {
+		console.group();
+		console.error(message, ex);
+		console.debug("extra data", JSON.stringify(extra));
+		console.groupEnd();
+	} else {
+		console.error(message, ex);
+	}
+
+	return null;
+};
+
+export const wrapError = <T>(message: string, func: () => T): T | null => {
+	try {
+		return func();
+	} catch (ex: unknown) {
+		return errorToast(message, ex);
+	}
+};
+
+export const wrapAsyncError = async <T>(message: string, func: () => Promise<T>): Promise<T | null> => {
+	try {
+		return await func();
+	} catch (ex: unknown) {
+		return errorToast(message, ex);
+	}
+};
+
+export const sleep = (ms: number) => {
+    return new Promise((resolve) => setTimeout(resolve, ms));
 };

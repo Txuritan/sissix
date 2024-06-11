@@ -1,5 +1,5 @@
 export interface Entity {
-    id?: number;
+    id: number | undefined;
     content: string;
 }
 
@@ -16,7 +16,7 @@ export enum BookType {
 }
 
 export interface Book {
-    id?: number;
+    id: number | undefined;
     cover: string;
     title: string;
     subtitle: string;
@@ -83,6 +83,7 @@ export interface FilledBook extends Book {
 }
 
 export const EMPTY_FILLED_BOOK: FilledBook = {
+    id: undefined,
     cover: "",
     title: "",
     subtitle: "",
