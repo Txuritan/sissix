@@ -4,7 +4,7 @@
     import { Badge } from "$lib/components/ui/badge";
 
     import { type FilledBook } from "$lib/models";
-    import { editEntry, editEntryOpen, viewEntry, viewEntryOpen } from "$lib/state";
+    import { editEntry, editEntryOpen, viewEntry, viewEntryOpen } from "$lib/state/core";
 
     export let book: FilledBook;
 

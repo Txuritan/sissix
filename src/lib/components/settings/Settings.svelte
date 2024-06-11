@@ -3,7 +3,7 @@
 
     import SettingsContent from "$lib/components/settings/SettingsContent.svelte";
 
-    import { settingsOpen } from "$lib/state";
+    import { settingsOpen } from "$lib/state/core";
 </script>
 
 <Dialog.Root open={$settingsOpen} onOpenChange={(state) => { $settingsOpen = state; }}>

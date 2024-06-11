@@ -5,7 +5,7 @@
     import AddScan from "$lib/components/add/AddScan.svelte";
     import AddSearch from "$lib/components/add/AddSearch.svelte";
 
-    import { addOpen } from "$lib/state";
+    import { addOpen } from "$lib/state/core";
 </script>
 
 <Dialog.Root open={$addOpen} onOpenChange={(state) => { $addOpen = state; }}>

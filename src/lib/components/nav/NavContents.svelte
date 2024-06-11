@@ -6,7 +6,7 @@
 
     import NavButton from "$lib/components/nav/NavButton.svelte";
 
-    import { navOpen, settingsOpen } from "$lib/state";
+    import { navOpen, settingsOpen } from "$lib/state/core";
     import ScrollArea from '../ui/scroll-area/scroll-area.svelte';
 </script>
 

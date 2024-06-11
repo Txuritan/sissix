@@ -3,7 +3,7 @@
 
     import BookEditContent from "$lib/components/book/BookEditContent.svelte";
 
-    import { editEntryOpen } from "$lib/state";
+    import { editEntryOpen } from "$lib/state/core";
 </script>
 
 <Dialog.Root open={$editEntryOpen} onOpenChange={(state) => { $editEntryOpen = state; }}>

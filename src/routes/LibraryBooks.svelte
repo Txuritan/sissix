@@ -12,7 +12,7 @@
     import MediaQueryMobile from "$lib/components/MediaQueryMobile.svelte";
 
     import DB from "$lib/database";
-    import { addOpen, navOpen } from "$lib/state";
+    import { addOpen, navOpen } from "$lib/state/core";
     import ScrollArea from '$lib/components/ui/scroll-area/scroll-area.svelte';
 
     $: books = liveQuery(() => DB.getAllBooks());

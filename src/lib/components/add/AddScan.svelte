@@ -5,12 +5,13 @@
     import MediaQueryDesktop from "$lib/components/MediaQueryDesktop.svelte";
     import MediaQueryMobile from "$lib/components/MediaQueryMobile.svelte";
 
-    import { addOpen, importOpen, importIsbn, cameras, settingsCameraSelected } from "$lib/state";
+    import { addOpen, importOpen, importIsbn, cameras } from "$lib/state/core";
+    import { cameraSelected } from "$lib/state/settings";
     import { errorToast } from "$lib/utils";
 
     const codeReader = new ZXing.BrowserMultiFormatReader();
 
-    const selectedDevice = $cameras.find(camera => camera.deviceId == $settingsCameraSelected);
+    const selectedDevice = $cameras.find(camera => camera.deviceId == $cameraSelected);
 
     onMount(async () => {
         if (selectedDevice != undefined) {

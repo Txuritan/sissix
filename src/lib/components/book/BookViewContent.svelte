@@ -1,7 +1,7 @@
 <script lang="ts">
     import dayjs from "dayjs";
 
-    import { viewEntry } from "$lib/state";
+    import { viewEntry } from "$lib/state/core";
 </script>
 
 <div class="h-48 min-h-48 max-h-48 w-[7.5rem] min-w-[7.5rem] max-w-[7.5rem] aspect-[10/16] overflow-hidden rounded">

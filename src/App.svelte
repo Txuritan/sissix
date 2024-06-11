@@ -17,7 +17,7 @@
 
     import * as Camera from "$lib/camera";
     import DB from "$lib/database";
-    import { cameras } from "$lib/state";
+    import { cameras } from "$lib/state/core";
 
     import LibraryBooks from "$routes/LibraryBooks.svelte";
     import LibraryBookshelves from "$routes/LibraryBookshelves.svelte";

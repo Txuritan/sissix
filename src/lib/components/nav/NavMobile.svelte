@@ -3,7 +3,7 @@
 
     import NavContents from "$lib/components/nav/NavContents.svelte";
 
-    import { navOpen } from "$lib/state";
+    import { navOpen } from "$lib/state/core";
 </script>
 
 <Sheet.Root open={$navOpen} onOpenChange={(state) => { $navOpen = state; }}>
