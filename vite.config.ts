@@ -160,12 +160,6 @@ export default defineConfig(({ command }) => {
                     manualChunks: {
                         dexie: ["dexie", "dexie-export-import"],
                         zxing: ["@zxing/library"],
-                        shadcn: [
-                            "@melt-ui/svelte", "@steeze-ui/svelte-icon", "@steeze-ui/tabler-icons",
-                            "bits-ui", "clsx", "cmdk-sv", "dayjs", "mode-watcher",
-                            "svelte-scrolling", "svelte-gestures", "svelte-radix", "svelte-routing", "svelte-sonner",
-                            "tailwind-merge", "tailwind-variants", "vaul-svelte",
-                        ],
                         ...(command == "serve" ? {
                             eruda: ["eruda"],
                         } : {}),
