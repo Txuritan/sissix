@@ -13,6 +13,10 @@ import Settings from "./pages/settings";
 import Layout from "./shared/layout";
 import { state } from "./shared/state";
 
+declare global {
+    interface Window { PRODUCTION: boolean | undefined; }
+}
+
 const wrapper = (comp: m.ClosureComponent): m.RouteResolver => {
 	return {
 		render: () => {
@@ -62,9 +66,11 @@ const registerServiceWorker = async () => {
 window.addEventListener("load", () => {
 	registerServiceWorker();
 
-	new EventSource("/esbuild").addEventListener("change", () =>
-		location.reload(),
-	);
+	if (!window.PRODUCTION) {
+		new EventSource("/esbuild").addEventListener("change", () =>
+			location.reload(),
+		);
+	}
 
 	m.route(document.body, "/library/bookshelves", {
 		"/add/bulk": AddBulk,

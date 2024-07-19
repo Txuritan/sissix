@@ -6,8 +6,8 @@
   "type": "module",
   "scripts": {
     "build": "concurrently \"npm:build:scripts\" \"npm:build:styles\"",
-    "build:scripts": "node esbuild.build.js",
-    "build:styles": "tailwindcss -i ./src/main.css -o ./dist/main.css",
+    "build:scripts": "cross-env NODE_ENV=production node esbuild.build.js",
+    "build:styles": "cross-env NODE_ENV=production tailwindcss -i ./src/main.css -o ./dist/main.css",
     "build:watch": "concurrently \"npm:build:scripts:watch\" \"npm:build:styles:watch\"",
     "build:scripts:watch": "node esbuild.watch.js",
     "build:styles:watch": "tailwindcss -i ./src/main.css -o ./dist/main.css --watch"
@@ -23,6 +23,7 @@
     "@typespec/versioning": "=0.58.0",
     "autoprefixer": "=10.4.19",
     "concurrently": "=8.2.2",
+    "cross-env": "=7.0.3",
     "esbuild": "=0.23.0",
     "postcss": "=8.4.39",
     "postcss-import": "=16.1.0",

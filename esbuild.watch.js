@@ -5,6 +5,9 @@ const ctx = await esbuild.context({
         './src/main.ts',
         './src/service-worker.ts',
     ],
+    define: {
+        PRODUCTION: `${process.env.NODE_ENV === "production"}`,
+    },
     sourcemap: true,
     bundle: true,
     outdir: './dist',
@@ -15,8 +18,8 @@ const ctx = await esbuild.context({
 
 await ctx.watch();
 
-let { host, port } = await ctx.serve({
+const { host, port } = await ctx.serve({
     servedir: './dist',
 });
 
-console.log("Started on http://"+host+":"+port);
+console.log(`Started on http://${host}:${port}`);

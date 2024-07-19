@@ -1498,10 +1498,12 @@
   };
   window.addEventListener("load", () => {
     registerServiceWorker();
-    new EventSource("/esbuild").addEventListener(
-      "change",
-      () => location.reload()
-    );
+    if (!window.PRODUCTION) {
+      new EventSource("/esbuild").addEventListener(
+        "change",
+        () => location.reload()
+      );
+    }
     re.route(document.body, "/library/bookshelves", {
       "/add/bulk": add_bulk_default,
       "/add/scan": add_scan_default,
