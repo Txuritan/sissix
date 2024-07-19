@@ -1,6 +1,7 @@
 {
-  "recommendations": [
-    "svelte.svelte-vscode",
-    "gordonlarrigan.vscode-kanbn"
-  ]
+    "recommendations": [
+        "biomejs.biome",
+        "bradlc.vscode-tailwindcss",
+        "gordonlarrigan.vscode-kanbn"
+    ]
 }

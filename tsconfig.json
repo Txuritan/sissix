@@ -1,27 +1,24 @@
 {
-  "extends": "@tsconfig/svelte/tsconfig.json",
-  "compilerOptions": {
-    "target": "ESNext",
-    "useDefineForClassFields": true,
-    "module": "ESNext",
-    "resolveJsonModule": true,
-    /**
-     * Typecheck JS in `.svelte` and `.js` files by default.
-     * Disable checkJs if you'd like to use dynamic types in JS.
-     * Note that setting allowJs false does not prevent the use
-     * of JS in `.svelte` files.
-     */
-    "allowJs": true,
-    "checkJs": true,
-    "isolatedModules": true,
-    "baseUrl": ".",
-    "paths": {
-      "$lib": ["./src/lib"],
-      "$lib/*": ["./src/lib/*"],
-      "$routes": ["./src/routes"],
-      "$routes/*": ["./src/routes/*"]
+    "compilerOptions": {
+        "target": "ES2020",
+        "module": "ES2020",
+        "moduleResolution": "Node10",
+        "lib": ["ES2015", "ES2015.Promise", "ES2020", "DOM", "DOM.Iterable"],
+        "allowJs": true,
+        "esModuleInterop": false,
+        "noImplicitAny": true,
+        "noImplicitThis": true,
+        "strictNullChecks": true,
+        "forceConsistentCasingInFileNames": true,
+        "outDir": "./scripts/"
+    },
+    "include": ["./src/**/*"],
+    "tsc-alias": {
+        "verbose": false,
+        "resolveFullPaths": true,
+        "fileExtensions": {
+          "inputGlob": "{js,jsx}",
+          "outputCheck": ["js", "jsx"]
+        }
     }
-  },
-  "include": ["src/**/*.ts", "src/**/*.js", "src/**/*.svelte"],
-  "references": [{ "path": "./tsconfig.node.json" }]
 }

@@ -1,0 +1,51 @@
+@layer components {
+    .a-nav {
+        @apply text-sm flex flex-row space-x-2 items-center justify-center;
+    }
+}
+
+@layer components {
+    .a-nav--container {
+        @apply flex flex-row justify-center gap-2 w-full;
+        @apply bg-surface;
+    }
+}
+
+@layer components {
+    .a-nav_item {
+        @apply flex w-1/4 flex-col items-center justify-center px-0 py-4 gap-1;
+    }
+}
+
+@layer components {
+    .a-nav_item--icon {
+        @apply relative w-16 h-8 flex items-center justify-center rounded-2xl;
+        @apply text-on-surface-variant;
+    }
+
+    .a-nav_item:hover .a-nav_item--icon,
+    .a-nav_item.-active .a-nav_item--icon {
+        @apply text-on-secondary-container;
+        @apply bg-secondary-container;
+        @apply bg-opacity-80;
+    }
+}
+
+@layer components {
+    .a-nav_item--badge {
+        @apply absolute top-0 left-8 min-w-[22px] px-1 h-4 flex items-center justify-center rounded-full text-[11px] leading-none tracking-[0.045em] font-medium;
+        @apply bg-on-error;
+    }
+}
+
+@layer components {
+    .a-nav_item--text {
+        @apply leading-tight tracking-[0.0416em];
+        @apply text-on-surface-variant;
+    }
+
+    .a-nav_item:hover .a-nav_item--text,
+    .a-nav_item.-active .a-nav_item--text {
+        @apply text-on-surface;
+    }
+}

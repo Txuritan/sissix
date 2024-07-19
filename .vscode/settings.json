@@ -1,0 +1,15 @@
+{
+    "[javascript]": {
+        "editor.defaultFormatter": "biomejs.biome"
+    },
+    "[typescript]": {
+        "editor.defaultFormatter": "biomejs.biome"
+    },
+    "files.associations": {
+        "*.css": "tailwindcss"
+    },
+    "typespec.tsp-server.path": "${workspaceFolder}/api/node_modules/@typespec/compiler",
+    "yaml.schemas": {
+        "https://json.schemastore.org/github-workflow.json": "${workspaceFolder}/.github/workflows/deploy.yml"
+    }
+}

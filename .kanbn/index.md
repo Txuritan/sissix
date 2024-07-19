@@ -11,8 +11,6 @@ completedColumns:
 
 ## Todo
 
-- [remove-shadcn-svelte](tasks/remove-shadcn-svelte.md)
-
 ## In Progress
 
 ## Done

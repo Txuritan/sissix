@@ -1,0 +1,24 @@
+@layer components {
+    .a-fab {
+        @apply absolute right-6 bottom-24 flex flex-row items-center justify-center gap-x-2 p-2 overflow-hidden text-sm tracking-[0.00714em] font-medium;
+        @apply interactive-bg-tertiary-container;
+    }
+}
+
+@layer components {
+    .a-fab.-small {
+        @apply w-10 h-10 rounded-xl shadow-lg;
+    }
+}
+
+@layer components {
+    .a-fab.-medium {
+        @apply w-14 h-14 rounded-2xl shadow-lg;
+    }
+}
+
+@layer components {
+    .a-fab.-large {
+        @apply w-24 h-24 rounded-[28px] shadow-xl;
+    }
+}

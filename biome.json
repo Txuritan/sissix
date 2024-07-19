@@ -1,0 +1,17 @@
+{
+    "formatter": {
+        "lineWidth": 120
+    },
+    "linter": {
+        "ignore": [
+            "dist/*.js",
+            "src/libraries/zxing/**/*.ts",
+            "src/libraries/dexie.d.ts",
+            "src/libraries/dexie.js",
+            "src/libraries/mithril.d.ts",
+            "src/libraries/mithril.js",
+            "src/libraries/mithril-hooks.ts",
+            "src/libraries/path.ts"
+        ]
+    }
+}

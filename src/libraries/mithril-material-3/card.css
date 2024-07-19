@@ -1,0 +1,26 @@
+@layer components {
+    .a-card {
+        @apply w-full rounded-xl flex items-center justify-center p-4;
+    }
+
+
+
+    .a-card.-outlined {
+        @apply bg-surface-container border border-outline-variant;
+        /* @apply dark:bg-neutral-900 dark:border-gray-700; */
+    }
+
+
+
+    .a-card.-elevated {
+        /* @apply bg-surface-100 shadow-lg; */
+        /* @apply dark:bg-surfaceDark-100 dark:shadow-gray-50/10; */
+    }
+
+
+
+    .a-card.-filled {
+        @apply bg-surface-container;
+        /* @apply dark:bg-gray-700; */
+    }
+}

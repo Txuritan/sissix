@@ -1,0 +1,9 @@
+@import "tailwindcss/base";
+
+@import "tailwindcss/components";
+@import "./libraries/mithril-material-3/button.css";
+@import "./libraries/mithril-material-3/card.css";
+@import "./libraries/mithril-material-3/fab.css";
+@import "./libraries/mithril-material-3/nav.css";
+
+@import "tailwindcss/utilities";
