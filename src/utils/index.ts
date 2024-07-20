@@ -166,3 +166,15 @@ export function arrayShuffle<T>(array: T[], seed: number): T[] {
 
 	return array;
 }
+
+export const until = (conditionFunction: () => boolean): Promise<void> => {
+	const poll = (resolve: () => void) => {
+		if (conditionFunction()) {
+			resolve();
+		} else {
+			setTimeout(() => poll(resolve), 400);
+		}
+	};
+
+	return new Promise(poll);
+};

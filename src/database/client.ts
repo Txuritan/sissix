@@ -1,33 +1,44 @@
-import m from "../libraries/mithril";
-import type { ApiResponse } from "../models/api";
+import type * as api from "../models/api";
 import type { Bookshelf, BookshelfId, UserBook } from "../models/database";
 import { Err, from, Ok, type Result } from "../utils";
 
-const responseToResult = <T>(response: ApiResponse<T>): Result<T> => {
-	if (response.code === undefined) {
-		return Ok(response.data);
+type FetchResponse<T> =
+	| (Omit<Response, "json"> & {
+			status: 200;
+			json: () => api.Response<T> | PromiseLike<api.Response<T>>;
+		})
+	| (Omit<Response, "json"> & {
+			status: 404;
+			json: () => api.ErrorNotFound | PromiseLike<api.ErrorNotFound>;
+		})
+	| (Omit<Response, "json"> & {
+			status: 500;
+			json: () => api.ErrorServerError | PromiseLike<api.ErrorServerError>;
+		});
+
+const fetchWrapper = async <T>(method: string, url: string): Promise<Result<T>> => {
+	const res = (await fetch(url, {
+		method: method,
+		headers: {
+			Accept: "application/json",
+		},
+	})) as FetchResponse<T>;
+
+	if (res.status === 200) {
+		const json = await res.json();
+
+		return Ok(json.data);
 	}
 
-	return Err(new Error(response.message));
+	if (res.status === 404 || res.status === 500) {
+		const json = await res.json();
+
+		return Err(new Error(json.message));
+	}
+
+	return Err(new Error(`Fetch '${url}' responded with an unknown status code`));
 };
 
-export const getBookshelves = async (): Promise<Result<Bookshelf[]>> => {
-	return responseToResult(
-		await m.request<ApiResponse<Bookshelf[]>>("/api/bookshelves", {
-			method: "GET",
-		}),
-	);
-};
+export const getBookshelves = async (): Promise<Result<Bookshelf[]>> => fetchWrapper("GET", "/api/bookshelves");
 
-export const getBooks = async (
-	id: BookshelfId,
-): Promise<Result<UserBook[]>> => {
-	return responseToResult(
-		await m.request<ApiResponse<UserBook[]>>("/api/bookshelves/:id", {
-			params: {
-				id: from(id),
-			},
-			method: "GET",
-		}),
-	);
-};
+export const getBooks = async (id: BookshelfId): Promise<Result<UserBook[]>> => fetchWrapper("GET", `/api/bookshelves/${from(id)}`);

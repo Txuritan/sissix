@@ -1,5 +1,4 @@
 interface State {
-    serviceWorker: boolean;
     settings: Settings;
 }
 
@@ -24,7 +23,6 @@ interface SearchSettings {
 }
 
 export const state: State = {
-    serviceWorker: false,
     settings: {
         camera: {
             list: [],

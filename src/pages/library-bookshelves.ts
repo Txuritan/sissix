@@ -1,14 +1,13 @@
 import m from "../libraries/mithril";
 import { Fab } from "../libraries/mithril-material-3/fab";
 
+import { getBookshelves } from "../database/client";
 import type { Bookshelf } from "../models/database";
-import { Err, type Result } from "../utils";
+import { Err, type Result, until } from "../utils";
 
 import { Add } from "../components/base/icons";
 import Button from "../components/base/button";
 import BookshelfEntry from "../components/bookshelf";
-import { getBookshelves } from "../database/client";
-import { state } from "../shared/state";
 
 export const LibraryBookshelves: m.ClosureComponent = () => {
 	let bookshelves: Result<Bookshelf[]> = Err(
@@ -16,14 +15,11 @@ export const LibraryBookshelves: m.ClosureComponent = () => {
 	);
 
 	return {
-		oninit: async (_) => {
+		oninit: async () => {
 			bookshelves = await getBookshelves();
+			m.redraw();
 		},
 		view: (vnode) => {
-			if (!state.serviceWorker) {
-				return null;
-			}
-
 			return bookshelves.match({
 				ok: (bookshelves) => {
 					return m("div", { class: "bg-zinc-100 px-4" }, [
@@ -39,8 +35,8 @@ export const LibraryBookshelves: m.ClosureComponent = () => {
 						]),
 					]);
 				},
-				err: (_) => {
-					return m("h1", "Error!");
+				err: (err) => {
+					return null;
 				},
 			});
 		},

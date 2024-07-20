@@ -19,6 +19,8 @@ export const BookshelfEntry: m.ClosureComponent<BookshelfEntryProps> = () => {
 			const attrs = vnode.attrs;
 
 			books = await getBooks(attrs.entry.id);
+
+			m.redraw();
 		},
 		view: (vnode) => {
 			const attrs = vnode.attrs;
@@ -35,7 +37,7 @@ export const BookshelfEntry: m.ClosureComponent<BookshelfEntryProps> = () => {
 					]);
 				},
 				err: (_) => {
-					return m("h1", "Error!");
+					return null;
 				},
 			});
 		},

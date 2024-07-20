@@ -11,10 +11,14 @@ import LibraryWishlist from "./pages/library-wishlist";
 import Settings from "./pages/settings";
 
 import Layout from "./shared/layout";
-import { state } from "./shared/state";
 
 declare global {
-    interface Window { PRODUCTION: boolean | undefined; }
+	interface Sissix {
+		gitHash: string | undefined;
+		production: boolean | undefined;
+	}
+
+	const SISSIX: Sissix;
 }
 
 const wrapper = (comp: m.ClosureComponent): m.RouteResolver => {
@@ -26,50 +30,48 @@ const wrapper = (comp: m.ClosureComponent): m.RouteResolver => {
 };
 
 const registerServiceWorker = async () => {
-	if ("serviceWorker" in navigator) {
-		try {
-			const registration = await navigator.serviceWorker.register(
-				"./service-worker.js",
-			);
-			if (registration.waiting && registration.active) {
-				Toast.addInfo("Please reload the tab to get updates.");
-			} else if (registration.active) {
-				state.serviceWorker = true;
-			} else {
-				registration.addEventListener("updatefound", () => {
-					if (registration.installing == null) {
-						return;
-					}
+	let registration: ServiceWorkerRegistration | undefined | null = null;
+	let installingRegistration: ServiceWorker | undefined | null = null;
 
-					registration.installing.addEventListener("statechange", (event) => {
-						if (event.target == null) {
-							return;
-						}
+	const updateRegistration = (reg: ServiceWorkerRegistration) => {
+		registration = reg;
 
-						const worker = event.target as ServiceWorker;
-						if (worker.state === "installed") {
-							if (registration.active) {
-								Toast.addInfo("Please reload the tab to get updates.");
-							} else {
-								state.serviceWorker = true;
-							}
-						}
-					});
-				});
-			}
-		} catch (error) {
-			console.error(`Registration failed with ${error}`);
+		registration.addEventListener("updatefound", () => onUpdateFound());
+	};
+
+	const onUpdateFound = () => {
+		if (installingRegistration) {
+			installingRegistration.removeEventListener("statechange", onStateChange);
 		}
+
+		installingRegistration = registration?.installing;
+		installingRegistration?.addEventListener("statechange", onStateChange);
+	};
+
+	const onStateChange = () => {
+		if (installingRegistration && installingRegistration.state === "installed" && navigator.serviceWorker.controller) {
+			installingRegistration = null;
+			onUpdateReady();
+		}
+	};
+
+	const onUpdateReady = () => {
+		Toast.addInfo("ANd update is ready, please reload", 60 * 10 * 10);
+	};
+
+	if ("serviceWorker" in navigator) {
+		navigator.serviceWorker.register("./service-worker.js", { scope: "./" }).then(
+			(registration) => updateRegistration(registration),
+			(error) => console.error("Could not register service worker:", error),
+		);
 	}
 };
 
 window.addEventListener("load", () => {
 	registerServiceWorker();
 
-	if (!window.PRODUCTION) {
-		new EventSource("/esbuild").addEventListener("change", () =>
-			location.reload(),
-		);
+	if (!SISSIX.production) {
+		new EventSource("/esbuild").addEventListener("change", () => location.reload());
 	}
 
 	m.route(document.body, "/library/bookshelves", {
