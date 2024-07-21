@@ -1,4 +1,4 @@
-import m from "../../libraries/mithril";
+import m from "@/mithril";
 
 export const Select: m.ClosureComponent<m.Attributes | undefined> = () => {
 	return {

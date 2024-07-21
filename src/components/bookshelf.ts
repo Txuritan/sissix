@@ -1,4 +1,4 @@
-import m from "../libraries/mithril";
+import m from "@/mithril";
 
 import { Header } from "./header";
 import { BookCover } from "./bookcover";

@@ -1,4 +1,4 @@
-import m from "../../libraries/mithril";
+import m from "@/mithril";
 
 export const Label: m.ClosureComponent<m.Attributes | undefined> = () => {
 	return {

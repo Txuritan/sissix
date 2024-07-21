@@ -1,6 +1,7 @@
-import m from "../../libraries/mithril";
-import { Fab } from "../../libraries/mithril-material-3/fab";
-import { Add } from "../../libraries/mithril-material-3/icon/add";
+import m from "@/mithril";
+import { Button } from "@/mithril-material-3/button";
+import { Fab } from "@/mithril-material-3/fab";
+import { Add } from "@/mithril-material-3/icon/add";
 
 import { getBookshelves } from "../../database/client";
 import type { Bookshelf } from "../../models/database";
@@ -30,7 +31,11 @@ export const Bookshelves: m.ClosureComponent = () => {
 					return m("div", { class: "bg-zinc-100 px-4" }, [
 						m(Fab, { kind: "tertiary", icon: m(Add), onclick: toggle }, [
 							fabOpen ? [
-								m("div"),
+								m("div", { class: "absolute right-6 bottom-40 flex flex-col gap-2" }, [
+									m(Button, { size: "small", icon: m(Add) }, "Bulk Scan"),
+									m(Button, { size: "small", icon: m(Add) }, "Scan"),
+									m(Button, { size: "small", icon: m(Add) }, "Add"),
+								]),
 							] : null,
 						]),
 						m("div", { class: "flex flex-col py-4 gap-y-2 md:gap-y-4" }, [

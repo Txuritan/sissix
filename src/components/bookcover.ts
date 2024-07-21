@@ -1,4 +1,4 @@
-import m from "../libraries/mithril";
+import m from "@/mithril";
 
 import type { Book } from "../models/database";
 import { from } from "../utils";

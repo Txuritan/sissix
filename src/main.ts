@@ -1,5 +1,5 @@
-import m from "./libraries/mithril";
-import * as Toast from "./libraries/mithril-toast";
+import m from "@/mithril";
+import * as Toast from "@/mithril-toast";
 
 import AddBulk from "./pages/add-bulk";
 import AddScan from "./pages/add-scan";

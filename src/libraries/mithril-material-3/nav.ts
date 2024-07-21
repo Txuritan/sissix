@@ -1,4 +1,5 @@
-import m from "../mithril";
+import m from "@/mithril";
+
 import type { IconProps } from "./icon/base";
 
 export interface TabsAttr extends m.Attributes {

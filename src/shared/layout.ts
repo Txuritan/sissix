@@ -1,11 +1,11 @@
-import m from "../libraries/mithril";
-import * as Toast from "../libraries/mithril-toast";
+import m from "@/mithril";
+import * as Toast from "@/mithril-toast";
 
-import { Nav } from "../libraries/mithril-material-3/nav";
-import { Label } from "../libraries/mithril-material-3/icon/label";
-import { Shelves } from "../libraries/mithril-material-3/icon/shelves";
-import { ShoppingMode } from "../libraries/mithril-material-3/icon/shopping-mode";
-import { Settings } from "../libraries/mithril-material-3/icon/settings";
+import { Nav } from "@/mithril-material-3/nav";
+import { Label } from "@/mithril-material-3/icon/label";
+import { Shelves } from "@/mithril-material-3/icon/shelves";
+import { ShoppingMode } from "@/mithril-material-3/icon/shopping-mode";
+import { Settings } from "@/mithril-material-3/icon/settings";
 
 export const Layout: m.ClosureComponent = (_vnode) => {
 	return {

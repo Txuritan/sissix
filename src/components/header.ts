@@ -1,5 +1,5 @@
-import m from "../libraries/mithril";
-import { MoreVert } from "../libraries/mithril-material-3/icon/more-vert";
+import m from "@/mithril";
+import { MoreVert } from "@/mithril-material-3/icon/more-vert";
 
 export interface HeaderAttrs extends m.Attributes {
 	title: string;

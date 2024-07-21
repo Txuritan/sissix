@@ -13,9 +13,9 @@
         "outDir": "./scripts/",
         "baseUrl": "./src",
         "paths": {
-            "@/*": ["./src/libraries/*"],
-            "$/*": ["./src/database/*"],
-            "^/*": ["./src/utils/*"],
+            "@/*": ["./libraries/*"],
+            "$/*": ["./database/*"],
+            "^/*": ["./utils/*"],
         },
         "jsx": "react",
         "jsxFactory": "m",

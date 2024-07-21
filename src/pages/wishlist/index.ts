@@ -1,6 +1,6 @@
-import m from "../../libraries/mithril";
-import { Fab } from "../../libraries/mithril-material-3/fab";
-import { Add } from "../../libraries/mithril-material-3/icon/add";
+import m from "@/mithril";
+import { Fab } from "@/mithril-material-3/fab";
+import { Add } from "@/mithril-material-3/icon/add";
 
 export const Wishlist: m.ClosureComponent = (vnode) => {
 	return {

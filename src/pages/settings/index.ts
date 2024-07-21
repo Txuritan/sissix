@@ -1,4 +1,4 @@
-import m from "../../libraries/mithril";
+import m from "@/mithril";
 
 import { Label } from "../../components/base/label";
 import { Select, Option } from "../../components/base/select";

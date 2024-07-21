@@ -1,4 +1,4 @@
-import type m from "../libraries/mithril";
+import type m from "@/mithril";
 
 export const AddBulk: m.ClosureComponent = (vnode) => {
 	return {

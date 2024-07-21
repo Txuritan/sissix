@@ -4,7 +4,7 @@
 export type {};
 declare const self: ServiceWorkerGlobalScope;
 
-import Path, { type TestMatch } from "./libraries/path";
+import Path, { type TestMatch } from "@/path";
 
 import { getBookshelves, getBooks } from "./database/worker";
 import { type Result, to } from "./utils";
