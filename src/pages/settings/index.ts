@@ -1,7 +1,7 @@
-import m from "../libraries/mithril";
+import m from "../../libraries/mithril";
 
-import { Label } from "../components/base/label";
-import { Select, Option } from "../components/base/select";
+import { Label } from "../../components/base/label";
+import { Select, Option } from "../../components/base/select";
 
 export const Settings: m.ClosureComponent = () => {
 	return {
@@ -33,5 +33,3 @@ export const Settings: m.ClosureComponent = () => {
 		},
 	};
 };
-
-export default Settings;

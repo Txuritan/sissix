@@ -70,17 +70,21 @@ const fetchHandler = (() => {
 		const url = new URL(request.url);
 
 		if (url.hostname === self.location.hostname) {
+			if (!SISSIX.production && url.pathname === "/esbuild") {
+				return await fetch(request);
+			}
+
 			for (const [path, handler] of handlers) {
 				const parsed = path.test(url.pathname);
 				if (parsed == null) {
 					continue;
 				}
 
-				return handler(request, parsed);
+				return await handler(request, parsed);
 			}
 		}
 
-		return fetch(request);
+		return await fetch(request);
 	};
 })();
 

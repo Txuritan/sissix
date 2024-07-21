@@ -12,17 +12,17 @@ export const Layout: m.ClosureComponent = (_vnode) => {
 		view: (vnode) => {
 			const items = [
 				{
-					href: "/library/bookshelves",
+					href: "bookshelves",
 					icon: Shelves,
 					label: "Bookshelves",
 				},
 				{
-					href: "/library/tags",
+					href: "tags",
 					icon: Label,
 					label: "Tags",
 				},
 				{
-					href: "/library/wishlist",
+					href: "wishlist",
 					icon: ShoppingMode,
 					label: "Wishlist",
 				},

@@ -10,15 +10,24 @@
         "noImplicitThis": true,
         "strictNullChecks": true,
         "forceConsistentCasingInFileNames": true,
-        "outDir": "./scripts/"
+        "outDir": "./scripts/",
+        "baseUrl": "./src",
+        "paths": {
+            "@/*": ["./src/libraries/*"],
+            "$/*": ["./src/database/*"],
+            "^/*": ["./src/utils/*"],
+        },
+        "jsx": "react",
+        "jsxFactory": "m",
+        "jsxFragmentFactory": "m.Fragment",
     },
     "include": ["./src/**/*"],
     "tsc-alias": {
         "verbose": false,
         "resolveFullPaths": true,
         "fileExtensions": {
-          "inputGlob": "{js,jsx}",
-          "outputCheck": ["js", "jsx"]
+            "inputGlob": "{js,jsx}",
+            "outputCheck": ["js", "jsx"]
         }
     }
 }

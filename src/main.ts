@@ -4,11 +4,11 @@ import * as Toast from "./libraries/mithril-toast";
 import AddBulk from "./pages/add-bulk";
 import AddScan from "./pages/add-scan";
 import AddSearch from "./pages/add-search";
-import LibraryBookshelf from "./pages/library-bookshelf";
-import LibraryBookshelves from "./pages/library-bookshelves";
-import LibraryTags from "./pages/library-tags";
-import LibraryWishlist from "./pages/library-wishlist";
-import Settings from "./pages/settings";
+import { Bookshelf } from "./pages/bookshelf";
+import { Bookshelves } from "./pages/bookshelves";
+import { Tags } from "./pages/tags";
+import { Wishlist } from "./pages/wishlist";
+import { Settings } from "./pages/settings";
 
 import Layout from "./shared/layout";
 
@@ -74,14 +74,14 @@ window.addEventListener("load", () => {
 		new EventSource("/esbuild").addEventListener("change", () => location.reload());
 	}
 
-	m.route(document.body, "/library/bookshelves", {
+	m.route(document.body, "/bookshelves", {
 		"/add/bulk": AddBulk,
 		"/add/scan": AddScan,
 		"/add/search": AddSearch,
-		"/library/bookshelves": wrapper(LibraryBookshelves),
-		"/library/bookshelves/:bookshelfId": wrapper(LibraryBookshelf),
-		"/library/tags": wrapper(LibraryTags),
-		"/library/wishlist": wrapper(LibraryWishlist),
+		"/bookshelves": wrapper(Bookshelves),
+		"/bookshelves/:bookshelfId": wrapper(Bookshelf),
+		"/tags": wrapper(Tags),
+		"/wishlist": wrapper(Wishlist),
 		"/settings": wrapper(Settings),
 	});
 });
