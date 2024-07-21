@@ -1,3 +1,5 @@
+import type { RecursivePartial } from "./utils";
+
 interface State {
     settings: Settings;
 }
@@ -22,7 +24,7 @@ interface SearchSettings {
     worldcatToken: string | null;
 }
 
-export const state: State = {
+const state: State = {
     settings: {
         camera: {
             list: [],
@@ -39,3 +41,9 @@ export const state: State = {
 export const loadState = () => {};
 
 export const saveState = () => {};
+
+export const getState = (): State => {
+    return state;
+};
+
+export const setState = (state: RecursivePartial<State>) => {};

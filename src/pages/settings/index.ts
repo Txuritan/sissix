@@ -3,10 +3,12 @@ import m from "@/mithril";
 import { Label } from "../../components/base/label";
 import { Select, Option } from "../../components/base/select";
 
+import Layout from "pages/layout";
+
 export const Settings: m.ClosureComponent = () => {
 	return {
 		view: (_vnode) => {
-			return [
+			return m(Layout, [
 				m("h2", { class: "text-2xl m-2" }, "Camera"),
 				m("div", { class: "p-2 mx-2 rounded-md shadow-sm" }, [
 					m(Label, { for: "settings-camera-selection" }, "Camera Selection"),
@@ -29,7 +31,7 @@ export const Settings: m.ClosureComponent = () => {
 						m(Option, "Hipchat"),
 					]),
 				]),
-			];
+			]);
 		},
 	};
 };

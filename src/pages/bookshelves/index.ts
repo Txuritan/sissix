@@ -9,10 +9,10 @@ import { Err, type Result } from "../../utils";
 
 import BookshelfEntry from "../../components/bookshelf";
 
+import Layout from "pages/layout";
+
 export const Bookshelves: m.ClosureComponent = () => {
-	let bookshelves: Result<Bookshelf[]> = Err(
-		new Error("bookshelves didn't load"),
-	);
+	let bookshelves: Result<Bookshelf[]> = Err(new Error("bookshelves didn't load"));
 
 	let fabOpen = false;
 
@@ -26,29 +26,30 @@ export const Bookshelves: m.ClosureComponent = () => {
 			m.redraw();
 		},
 		view: (vnode) => {
-			return bookshelves.match({
-				ok: (bookshelves) => {
-					return m("div", { class: "bg-zinc-100 px-4" }, [
-						m(Fab, { kind: "tertiary", icon: m(Add), onclick: toggle }, [
-							fabOpen ? [
-								m("div", { class: "absolute right-6 bottom-40 flex flex-col gap-2" }, [
-									m(Button, { size: "small", icon: m(Add) }, "Bulk Scan"),
-									m(Button, { size: "small", icon: m(Add) }, "Scan"),
-									m(Button, { size: "small", icon: m(Add) }, "Add"),
-								]),
-							] : null,
+			return bookshelves
+				.map((bookshelves) => {
+					const fabButtons = [
+						m("div", { class: "absolute right-6 bottom-40 flex flex-col gap-2" }, [
+							m(Button, { size: "small", icon: m(Add) }, "Bulk Scan"),
+							m(Button, { size: "small", icon: m(Add) }, "Scan"),
+							m(Button, { size: "small", icon: m(Add) }, "Add"),
 						]),
-						m("div", { class: "flex flex-col py-4 gap-y-2 md:gap-y-4" }, [
-							bookshelves.map((bookshelf) => {
-								return m(BookshelfEntry, { entry: bookshelf }, []);
-							}),
+					];
+
+					const fab = m(Fab, { kind: "tertiary", icon: m(Add), onclick: toggle }, [fabOpen ? fabButtons : null]);
+
+					return m(Layout, [
+						m("div", { class: "bg-zinc-100 px-4" }, [
+							fab,
+							m("div", { class: "flex flex-col py-4 gap-y-2 md:gap-y-4" }, [
+								bookshelves.map((bookshelf) => {
+									return m(BookshelfEntry, { entry: bookshelf }, []);
+								}),
+							]),
 						]),
 					]);
-				},
-				err: (err) => {
-					return null;
-				},
-			});
+				})
+				.unwrapOr(null);
 		},
 	};
 };

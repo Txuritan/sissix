@@ -1,9 +1,11 @@
 import m from "@/mithril";
 
+import Layout from "pages/layout";
+
 export const Tags: m.ClosureComponent = (vnode) => {
 	return {
 		view: (vnode) => {
-			return m("h1", "Tags!");
+			return m(Layout, [m("h1", "Tags!")]);
 		},
 	};
 };

@@ -1,3 +1,7 @@
+export type RecursivePartial<T> = {
+    [P in keyof T]?: RecursivePartial<T[P]>;
+};
+
 type OptionInner<T> = { some: true; value: T } | { some: false };
 
 interface OptionMatcher<T, O> {
@@ -24,6 +28,7 @@ export class Option<T> {
 		if (this.inner.some) {
 			return matcher.some(this.inner.value);
 		}
+
 		return matcher.none();
 	}
 
@@ -39,6 +44,14 @@ export class Option<T> {
 			some: (t) => fn(t),
 			none: () => Option.None(),
 		});
+	}
+
+	public unwrapOr(value: T | null): T | null {
+		if (this.inner.some) {
+			return this.inner.value;
+		}
+
+		return value;
 	}
 }
 
@@ -80,6 +93,7 @@ export class Result<T, E = Error> {
 		if (this.inner.ok) {
 			return matcher.ok(this.inner.value);
 		}
+
 		return matcher.err(this.inner.error);
 	}
 
@@ -110,6 +124,14 @@ export class Result<T, E = Error> {
 			err: (_) => Option.None(),
 		});
 	}
+
+	public unwrapOr(value: T | null): T | null {
+		if (this.inner.ok) {
+			return this.inner.value;
+		}
+
+		return value;
+	}
 }
 
 export const Ok = <T, E = Error>(value: T): Result<T, E> => {
@@ -118,6 +140,22 @@ export const Ok = <T, E = Error>(value: T): Result<T, E> => {
 
 export const Err = <T, E = Error>(error: E): Result<T, E> => {
 	return Result.Err(error);
+};
+
+export const wrapError = <T>(message: string, func: () => T): Result<T> => {
+	try {
+		return Ok(func());
+	} catch (ex: unknown) {
+		return Err(new Error(message));
+	}
+};
+
+export const wrapAsyncError = async <T>(message: string, func: () => Promise<T>): Promise<Result<T>> => {
+	try {
+		return Ok(await func());
+	} catch (ex: unknown) {
+		return Err(new Error(message));
+	}
 };
 
 export function to<

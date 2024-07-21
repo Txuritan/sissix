@@ -10,34 +10,24 @@ import { Settings } from "@/mithril-material-3/icon/settings";
 export const Layout: m.ClosureComponent = (_vnode) => {
 	return {
 		view: (vnode) => {
+			const create = (href: string, icon: m.ClosureComponent, label: string) => ({
+				href: href,
+				icon: icon,
+				label: label,
+			});
+
 			const items = [
-				{
-					href: "bookshelves",
-					icon: Shelves,
-					label: "Bookshelves",
-				},
-				{
-					href: "tags",
-					icon: Label,
-					label: "Tags",
-				},
-				{
-					href: "wishlist",
-					icon: ShoppingMode,
-					label: "Wishlist",
-				},
-				{
-					href: "/settings",
-					icon: Settings,
-					label: "Settings",
-				},
+				create("/bookshelves", Shelves, "Bookshelves"),
+				create("/tags", Label, "Tags"),
+				create("/wishlist", ShoppingMode, "Wishlist"),
+				create("/settings", Settings, "Settings"),
 			];
 
-			return m.fragment({}, [
+			return [
 				m(Toast.Drawer),
 				m("div", { class: "flex-1 overflow-y-scroll" }, vnode.children),
 				m(Nav, { items: items }, []),
-			]);
+			];
 		},
 	};
 };

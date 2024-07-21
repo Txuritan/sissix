@@ -1,6 +1,8 @@
 import m from "@/mithril";
 import * as Toast from "@/mithril-toast";
 
+// import { Camera } from "^/camera";
+
 import AddBulk from "./pages/add-bulk";
 import AddScan from "./pages/add-scan";
 import AddSearch from "./pages/add-search";
@@ -10,8 +12,6 @@ import { Tags } from "./pages/tags";
 import { Wishlist } from "./pages/wishlist";
 import { Settings } from "./pages/settings";
 
-import Layout from "./shared/layout";
-
 declare global {
 	interface Sissix {
 		gitHash: string | undefined;
@@ -20,14 +20,6 @@ declare global {
 
 	const SISSIX: Sissix;
 }
-
-const wrapper = (comp: m.ClosureComponent): m.RouteResolver => {
-	return {
-		render: () => {
-			return m(Layout, m(comp));
-		},
-	};
-};
 
 const registerServiceWorker = async () => {
 	let registration: ServiceWorkerRegistration | undefined | null = null;
@@ -78,10 +70,15 @@ window.addEventListener("load", () => {
 		"/add/bulk": AddBulk,
 		"/add/scan": AddScan,
 		"/add/search": AddSearch,
-		"/bookshelves": wrapper(Bookshelves),
-		"/bookshelves/:bookshelfId": wrapper(Bookshelf),
-		"/tags": wrapper(Tags),
-		"/wishlist": wrapper(Wishlist),
-		"/settings": wrapper(Settings),
+		"/bookshelves": Bookshelves,
+		"/bookshelves/:bookshelfId": Bookshelf,
+		"/tags": Tags,
+		"/wishlist": Wishlist,
+		"/settings": Settings,
 	});
+
+	// TODO: have a setup screen where it walks the user though so they don't get a camera use popup the moment they open the app
+	(async () => {
+		// Camera.requestPermission();
+	})();
 });
